@@ -2,6 +2,7 @@ import numpy as np
 
 
 class Perceptron(object):
+
     """ Perceptron Classifier:
 
     Parameters
@@ -21,8 +22,6 @@ class Perceptron(object):
 
     errors_ : list
         Number of misclassifications in every epoch
-
-
     """
 
     def __init__(self, eta=0.01, n_iter=10):
@@ -41,20 +40,38 @@ class Perceptron(object):
         self.w_ = np.zeros(1 + X.shape[1])
         self.errors_ = []
 
+        print('About to begin iterations for training Perceptron...\n\n')
         for _ in range(self.n_iter):
             errors = 0
             for xi, target in zip(X, y):
+                print('iteration #', _)
+                print('xi is ', xi)
+                print('target is ', target)
+
                 update = self.eta * (target - self.predict(xi))
+                print('update is ', update)
+
                 self.w_[1:] += update * xi
+                print('self.w_[1:] is ', self.w_[1:])
                 self.w_[0] += update
-                errors = int(update != 0.0)
+                print('self.w_[0] is ', self.w_[0])
+
+                print('weights after updates is ', self.w_)
+
+                errors += int(update != 0.0)
+                print('errors for this iterations are ', errors)
+                print('\n\n')
+
             self.errors_.append(errors)
+
+        print('total errors are ', self.errors_)
+
         return self
 
     def net_input(self, X):
         """ Calculate net input """
         """ (just for calculating w^T * x """
-        return np.dot(X, self.w_[1:] + self.w_[0])
+        return np.dot(X, self.w_[1:]) + self.w_[0]
 
     def predict(self, X):
         """ Return the class label after unit step """
