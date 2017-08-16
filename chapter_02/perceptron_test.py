@@ -2,9 +2,10 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
 from chapter_02.perceptron import Perceptron
+from matplotlib.colors import ListedColormap
 
 plot_Iris = False
-plot_Perceptron_errors = False
+plot_Perceptron_errors = True
 
 df = pd.read_csv('../data/iris.csv', header=None)
 
@@ -42,3 +43,5 @@ if plot_Perceptron_errors:
     plt.xlabel('Epochs')
     plt.ylabel('Number of misclassifications')
     plt.show()
+
+
