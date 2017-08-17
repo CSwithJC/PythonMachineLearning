@@ -1,8 +1,8 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from chapter_02.adaline import AdalineGD
-from chapter_02.plot_perceptron_decision_regions import plot_decision_regions
+from chapter_02_linear_classifiers.adaline import AdalineGD
+from chapter_02_linear_classifiers.plot_perceptron_decision_regions import plot_decision_regions
 
 plot_without_standarization = False
 plot_with_standarization = True

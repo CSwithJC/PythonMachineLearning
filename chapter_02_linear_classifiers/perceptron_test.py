@@ -1,7 +1,7 @@
 import pandas as pd
 import matplotlib.pyplot as plt
 import numpy as np
-from chapter_02.perceptron import Perceptron
+from chapter_02_linear_classifiers.perceptron import Perceptron
 from matplotlib.colors import ListedColormap
 
 plot_Iris = False
