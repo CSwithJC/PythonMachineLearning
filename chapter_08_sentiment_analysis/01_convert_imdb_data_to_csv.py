@@ -22,7 +22,7 @@ if create_csv_file:
     np.random.seed(0)
 
     df = df.reindex(np.random.permutation(df.index))
-    df.to_csv('../data/movie_data.csv')
+    df.to_csv('../data/movie_data.csv', index=False)
     df.head(3)
 
 df = pd.read_csv('../data/movie_data.csv')
