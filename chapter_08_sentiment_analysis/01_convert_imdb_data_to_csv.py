@@ -9,17 +9,14 @@ if create_csv_file:
 
     df = pd.DataFrame()
 
-    print('starting:')
     for s in ('test', 'train'):
         for l in ('pos', 'neg'):
             path = '../data/aclImdb/%s/%s' % (s, l)
             for file in os.listdir(path):
                 with open(os.path.join(path, file), 'r') as infile:
                     txt = infile.read()
-                print('lol file')
                 df = df.append([[txt, labels[l]]], ignore_index=True)
 
-    print('done')
     df.columns = ['review', 'sentiment']
 
     np.random.seed(0)
