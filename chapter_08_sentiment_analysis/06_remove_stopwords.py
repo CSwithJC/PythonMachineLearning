@@ -23,6 +23,10 @@ porter = PorterStemmer()
 def tokenizer_porter(text):
     return [porter.stem(word) for word in text.split()]
 
+# NOTE: You can install nltk's stopwords module using the following commands in a Python shell:
+# >>> import nltk
+# >>> nltk.download('stopwords') # Thats it!
+
 from nltk.corpus import stopwords
 stop = stopwords.words('english')
 print([w for w in tokenizer_porter('a runner likes running and runs a lit')[-10:] if w not in stop])

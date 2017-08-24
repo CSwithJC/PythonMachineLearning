@@ -23,4 +23,4 @@ porter = PorterStemmer()
 def tokenizer_porter(text):
     return [porter.stem(word) for word in text.split()]
 
-print(tokenizer_porter('runners like running and thus they run'))
+tokenizer_porter('runners like running and thus they run')
