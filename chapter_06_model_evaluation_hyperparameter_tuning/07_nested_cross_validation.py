@@ -1,18 +1,20 @@
 import pandas as pd
+import numpy as np
 
 from sklearn.preprocessing import LabelEncoder
-from sklearn.model_selection import train_test_split, GridSearchCV
+from sklearn.model_selection import train_test_split, GridSearchCV, cross_val_score
 from sklearn.svm import SVC
+from sklearn.tree import DecisionTreeClassifier
 from sklearn.preprocessing import StandardScaler
 from sklearn.pipeline import Pipeline
 
 
-"""Grid Search:
+"""Nested Cross-Validation:
 
-Grid search is nothing more than a brute force exhaustive search paradigm
-where we specify a list of values for different hyperparameters and the computer
-evaluates the model performance for each combination of those to obtain
-the optimal set.
+A method that could be used if we want to select between different
+machine learning algorithms. This cross-validation is useful to see how
+a specific ML algorithm would perform with new data that comes from the same
+population as this particular data set. Uses 5x2 Cross Validation.
 """
 df = pd.read_csv('../data/wdbc.csv')
 
@@ -65,5 +67,19 @@ clf = gs.best_estimator_
 clf.fit(X_train, y_train)
 print('Test Accuracy: %.3f' % clf.score(X_test, y_test))
 
-# Remember that Grid Search is very computationally expensive; an
-# alternative approach is to use RandomizedSearchCV.
+"""NESTED CROSS VALIDATION:"""
+
+# Compute nested cross validation score here:
+print('For SVC:')
+scores = cross_val_score(gs, X, y, scoring='accuracy', cv=5)
+print('CV accuracy: %.3f +/- %.3f' % (np.mean(scores), np.std(scores)))
+
+print('For Decision Tree:')
+gs = GridSearchCV(estimator=DecisionTreeClassifier(random_state=0),
+                  param_grid=[{'max_depth': [1, 2, 3, 4, 5, 6, 7, None]}],
+                  scoring='accuracy',
+                  cv=5,
+                  n_jobs=-1)
+
+scores = cross_val_score(gs, X_train, y_train, scoring='accuracy', cv=5)
+print('CV accuracy: %.3f +/- %.3f' % (np.mean(scores), np.std(scores)))
