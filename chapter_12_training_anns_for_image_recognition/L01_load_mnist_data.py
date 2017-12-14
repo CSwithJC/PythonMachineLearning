@@ -31,7 +31,7 @@ def load_mnist(path, kind='train'):
     return images, labels
 
 
-# Print the dimensions
+# Load data and print the dimensions
 X_train, y_train = load_mnist('../data/', kind='train')
 print('Rows: %d, columns: %d' % (X_train.shape[0], X_train.shape[1]))
 
