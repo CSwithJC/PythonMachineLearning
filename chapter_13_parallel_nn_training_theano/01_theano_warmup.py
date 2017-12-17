@@ -1,6 +1,11 @@
 import theano
 from theano import tensor as T
 
+# Config Theano to use 32-bit architecture:
+theano.config.floatX = 'float32'
+#theano.config.device = 'gpu'
+
+
 # Initialize
 x1 = T.scalar()
 w1 = T.scalar()
