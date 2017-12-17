@@ -1,8 +1,8 @@
 import os
 import struct
-import numpy as np
-import matplotlib.pyplot as plt
 
+import matplotlib.pyplot as plt
+import numpy as np
 
 from chapter_12_training_anns_for_image_recognition.neural_net import NeuralNetMLP
 
@@ -29,7 +29,7 @@ print('Rows: %d, columns: %d' % (X_train.shape[0], X_train.shape[1]))
 X_test, y_test = load_mnist('../data/', kind='t10k')
 print('Rows: %d, columns: %d' % (X_test.shape[0], X_test.shape[1]))
 
-nn = NeuralNetMLP(n_output=10,  # 10 Output units
+nn = NeuralNetMLP(n_output=10,  # 10 Output units (because numbers 0 to 9)
 
                   n_features=X_train.shape[1],  # 784 Input Features
 
@@ -87,12 +87,12 @@ plt.show()
 # Train Data
 y_train_pred = nn.predict(X_train)
 acc = np.sum(y_train == y_train_pred, axis=0) / X_train.shape[0]
-print('Training Accuracy: %.2f%%' % (acc * 100))
+print('\nTraining Accuracy: %.2f%%' % (acc * 100))
 
 # Test Data
 y_test_pred = nn.predict(X_test)
 acc = np.sum(y_test == y_test_pred, axis=0) / X_test.shape[0]
-print('Test Accuracy: %.2f%%' % (acc * 100))
+print('\nTest Accuracy: %.2f%%' % (acc * 100))
 
 # Plot some of the images the MLP struggled with:
 miscl_img = X_test[y_test != y_test_pred][:25]
