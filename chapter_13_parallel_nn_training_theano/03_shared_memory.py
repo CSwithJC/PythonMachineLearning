@@ -16,13 +16,13 @@ z = x.dot(w.T)
 update = [[w, w+1.0]]
 
 # compile
-net_imput = theano.function(inputs=[x],
-                            updates=update, # Update variable
-                            givens={x: data}, # Givens is used to insert values into a graph
-                                              # before compiling it
+net_input = theano.function(inputs=[x],
+                            updates=update,  # Update variable
+                            givens={x: data},  # Givens is used to insert values into a graph
+                                               # before compiling it
                             outputs=z)
 
 # execute
 data = np.array([[1, 2, 3]])
 for i in range(5):
-    print('z%d:' % i, net_imput(data))
+    print('z%d:' % i, net_input(data))
