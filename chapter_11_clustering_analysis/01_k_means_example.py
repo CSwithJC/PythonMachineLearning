@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 from sklearn.datasets import make_blobs
 
-
+"""Plot blobs that will be used for K-Means later"""
 X, y = make_blobs(n_samples=150,
                   n_features=2,
                   centers=3,
@@ -12,7 +12,7 @@ X, y = make_blobs(n_samples=150,
 
 plt.scatter(X[:, 0],
             X[:, 1],
-            c='white',
+            c='red',
             marker='o',
             s=50)
 
