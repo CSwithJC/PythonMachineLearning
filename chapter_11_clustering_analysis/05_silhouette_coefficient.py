@@ -49,6 +49,7 @@ silhouette_avg = np.mean(silhouette_vals)
 plt.axvline(silhouette_avg,
             color='red',
             linestyle='--')
+
 plt.yticks(yticks, cluster_labels + 1)
 plt.ylabel('Cluster')
 plt.xlabel('Silhouette Coefficient')
